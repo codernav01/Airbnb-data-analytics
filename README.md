@@ -107,7 +107,7 @@ Key original fields include:
 
 ```text
 Airbnb-data-analytics/
-├── Airbnb-data-analytics.ipynb
+├── airbnb_data_analysis.ipynb
 ├── airbnb (1).csv
 └── README.md
 ```
