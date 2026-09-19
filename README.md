@@ -1,72 +1,50 @@
-# Airbnb Data Analytics
+# Airbnb Data Analytics — Cleaning, Feature Engineering & EDA
 
 ## Project Overview
 
-This project presents an end-to-end analysis of an Airbnb listings dataset using **Python, Pandas, NumPy, Matplotlib, and Seaborn**. The analysis focuses on improving data quality, creating meaningful analytical features, and exploring pricing, availability, reviews, ratings, host behavior, and geographic patterns.
+This project analyzes an Airbnb listings dataset using **Python, Pandas, NumPy, Matplotlib, and Seaborn**. The workflow focuses on data quality first, then feature engineering, followed by exploratory analysis of pricing, availability, reviews, host behaviour, and geographic patterns.
 
-The project follows a structured workflow:
+The raw dataset contains **10,019 listings and 17 original columns**. After cleaning and feature engineering, the analysis works with an expanded analytical dataset containing additional variables for pricing, review activity, host type, occupancy proxies, and revenue proxies.
 
-**Data Cleaning → Feature Engineering → Exploratory Data Analysis**
+## Analytical Workflow
 
-The objective is to transform raw Airbnb listing data into a reliable, analysis-ready dataset and extract meaningful insights from listing-level information.
+```text
+Raw listing data
+      ↓
+Data-quality audit
+      ↓
+Cleaning and type correction
+      ↓
+Feature engineering
+      ↓
+Validation
+      ↓
+Exploratory analysis
+      ↓
+Business interpretation
+```
 
----
+## Data Quality Work
 
-## Project Objectives
+The project investigates and handles:
 
-- Identify and handle missing, inconsistent, and duplicate data.
-- Standardize categorical, numerical, date, and geographic fields.
-- Validate data quality before analysis.
-- Create analytical features related to pricing, reviews, availability, hosts, and revenue.
-- Explore relationships between price, availability, ratings, reviews, and listing characteristics.
-- Identify geographic and host-level patterns.
-- Generate data-driven insights through statistical analysis and visualizations.
+- missing values across review, price, and identity fields
+- zero-review listings and structurally missing review metrics
+- price parsing and invalid values
+- duplicate rows and repeated listing IDs
+- date conversion
+- latitude / longitude extraction
+- room-type standardization
+- borough / neighborhood extraction
+- price outlier detection
+- hierarchical median-based price imputation
+- final data-type and consistency checks
 
----
+An important decision in the project is to **preserve meaningful missingness**. For example, listings with zero reviews retain missing review-derived metrics rather than receiving arbitrary replacement values.
 
-## Dataset
+## Feature Engineering
 
-The project uses an Airbnb listings dataset containing **10,019 listings and 17 original columns**.
-
-### Key Data Fields
-
-| Category | Variables |
-|---|---|
-| Listing | `listing_id`, `name`, `listing_added` |
-| Host | `host_id`, `host_name` |
-| Location | `neighbourhood_full`, `coordinates` |
-| Accommodation | `room_type` |
-| Pricing | `price` |
-| Reviews | `number_of_reviews`, `last_review`, `reviews_per_month`, `rating`, `5_stars` |
-| Availability | `availability_365` |
-| Stay Activity | `number_of_stays` |
-
-The dataset contains listing-level information related to **hosts, locations, pricing, reviews, ratings, availability, and estimated stay activity**.
-
----
-
-## Coding & Analysis Workflow
-
-### Part 1 — Data Cleaning & Data Quality
-
-The raw dataset is prepared for analysis by:
-
-- Checking missing values and their proportions.
-- Investigating zero-review listings and review-related missing values.
-- Handling missing and invalid prices.
-- Converting price and date fields into appropriate data types.
-- Extracting latitude and longitude from coordinate strings.
-- Standardizing room-type categories.
-- Separating borough and neighborhood information.
-- Validating duplicate rows and repeated listing IDs.
-- Detecting price outliers.
-- Correcting numerical precision issues.
-- Applying hierarchical median-based price imputation.
-- Performing final data-quality validation.
-
-### Part 2 — Data Wrangling & Feature Engineering
-
-The cleaned dataset is enhanced with analytical features including:
+The project creates analytical variables including:
 
 - `borough`
 - `neighborhood`
@@ -82,62 +60,58 @@ The cleaned dataset is enhanced with analytical features including:
 - `host_type`
 - `revenue_estimate`
 
-These features enable deeper comparison of **listings, hosts, pricing, review activity, availability, and potential revenue**.
+> `occupancy_estimate` and `revenue_estimate` are analytical proxies derived from available fields. They should not be interpreted as verified Airbnb occupancy or realized revenue.
 
-### Part 3 — Exploratory Data Analysis
+## Exploratory Questions
 
-The feature-engineered dataset is analyzed across multiple dimensions:
+The analysis examines:
 
-- Price distribution and skewness.
-- Room-type and borough composition.
-- Listing availability.
-- Price differences across boroughs and room types.
-- Relationship between reviews and ratings.
-- Relationship between price and availability.
-- Review activity by room type.
-- Neighborhood-level price and five-star performance.
-- Single-listing versus multi-property hosts.
-- Geographic distribution of listings.
-- Listing additions over time.
-- Review recency versus availability.
-- Never-reviewed listings.
-- Review-data consistency and final analytical validation.
+- How is listing price distributed?
+- Which room types and boroughs dominate the dataset?
+- How does price differ by borough and room type?
+- How is availability distributed?
+- How do reviews and ratings relate?
+- Does review activity differ by room type?
+- Which neighborhoods have higher median prices or stronger rating signals?
+- How do single-listing and multi-property hosts differ?
+- What geographic patterns appear across listings?
+- How has listing activity changed over time?
+- Which listings have never received reviews?
 
----
+## Dataset
 
-## Key Analytical Areas
+Key original fields include:
 
-The project examines how **location, accommodation type, pricing, availability, review activity, and host portfolio size** relate to Airbnb listing performance.
+| Area | Variables |
+|---|---|
+| Listing | `listing_id`, `name`, `listing_added` |
+| Host | `host_id`, `host_name` |
+| Location | `neighbourhood_full`, `coordinates` |
+| Accommodation | `room_type` |
+| Pricing | `price` |
+| Reviews | `number_of_reviews`, `last_review`, `reviews_per_month`, `rating`, `5_stars` |
+| Availability | `availability_365` |
+| Stay activity | `number_of_stays` |
 
-The analysis particularly focuses on:
+## Tech Stack
 
-- Pricing behavior and price concentration.
-- Geographic differences in listing prices.
-- Review engagement and listing activity.
-- Availability patterns across host types.
-- High-value and highly rated neighborhoods.
-- Potential occupancy and revenue patterns.
-- Listings with no review history.
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Jupyter Notebook
+- Git / GitHub
 
----
-
-## Tools & Technologies
-
-- **Python**
-- **Pandas**
-- **NumPy**
-- **Matplotlib**
-- **Seaborn**
-- **Jupyter Notebook**
-- **GitHub**
-
----
-
-## Project Structure
+## Repository Structure
 
 ```text
-Airbnb-Data-Analytics/
-│
+Airbnb-data-analytics/
 ├── Airbnb-data-analytics.ipynb
 ├── airbnb (1).csv
 └── README.md
+```
+
+## What This Project Demonstrates
+
+This project is primarily evidence of **data cleaning discipline, feature-engineering judgment, exploratory analysis, and careful interpretation of proxy variables** rather than just chart generation.
