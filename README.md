@@ -80,6 +80,9 @@ The analysis examines:
 
 ## Dataset
 
+**Provenance note:** The repository includes the Airbnb listings CSV used for this analysis. The original public source and licence are not documented in the current repository, so the README avoids attributing the dataset to a specific publisher without evidence.
+
+
 Key original fields include:
 
 | Area | Variables |
