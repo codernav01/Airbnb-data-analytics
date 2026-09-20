@@ -1,32 +1,40 @@
 # Airbnb Data Analytics — Cleaning, Feature Engineering & EDA
 
+> **Python portfolio case study:** data-quality decisions, feature engineering, exploratory analysis, and careful interpretation of analytical proxies.
+
+## Recruiter Snapshot
+
+| Area | Evidence |
+|---|---|
+| Dataset | **10,019 listings**, 17 original columns |
+| Core work | cleaning, validation, feature engineering, EDA |
+| Python | Pandas, NumPy, Matplotlib, Seaborn |
+| Analytical focus | pricing, availability, reviews, hosts, geography |
+| Judgment | preserves meaningful missingness and labels proxy metrics clearly |
+
 ## Project Overview
 
-This project analyzes an Airbnb listings dataset using **Python, Pandas, NumPy, Matplotlib, and Seaborn**. The workflow focuses on data quality first, then feature engineering, followed by exploratory analysis of pricing, availability, reviews, host behaviour, and geographic patterns.
-
-The raw dataset contains **10,019 listings and 17 original columns**. After cleaning and feature engineering, the analysis works with an expanded analytical dataset containing additional variables for pricing, review activity, host type, occupancy proxies, and revenue proxies.
-
-## Analytical Workflow
+The project starts with raw listing data, audits quality issues, cleans and standardizes fields, engineers analysis-ready features, validates the result, and then explores business-relevant patterns.
 
 ```text
-Raw listing data
-      ↓
-Data-quality audit
-      ↓
-Cleaning and type correction
-      ↓
+Raw listings
+   ↓
+Quality audit
+   ↓
+Cleaning & type correction
+   ↓
 Feature engineering
-      ↓
+   ↓
 Validation
-      ↓
-Exploratory analysis
-      ↓
+   ↓
+EDA
+   ↓
 Business interpretation
 ```
 
-## Data Quality Work
+## Data Quality Decisions
 
-The project investigates and handles:
+The notebook investigates:
 
 - missing values across review, price, and identity fields
 - zero-review listings and structurally missing review metrics
@@ -38,13 +46,13 @@ The project investigates and handles:
 - borough / neighborhood extraction
 - price outlier detection
 - hierarchical median-based price imputation
-- final data-type and consistency checks
+- final type and consistency checks
 
-An important decision in the project is to **preserve meaningful missingness**. For example, listings with zero reviews retain missing review-derived metrics rather than receiving arbitrary replacement values.
+A key decision is to **preserve meaningful missingness**. Listings with zero reviews keep review-derived fields missing rather than receiving arbitrary replacement values.
 
 ## Feature Engineering
 
-The project creates analytical variables including:
+Created analytical variables include:
 
 - `borough`
 - `neighborhood`
@@ -60,61 +68,44 @@ The project creates analytical variables including:
 - `host_type`
 - `revenue_estimate`
 
-> `occupancy_estimate` and `revenue_estimate` are analytical proxies derived from available fields. They should not be interpreted as verified Airbnb occupancy or realized revenue.
+> `occupancy_estimate` and `revenue_estimate` are analytical proxies derived from available fields. They are not verified Airbnb occupancy or realized revenue.
 
-## Exploratory Questions
+## Analytical Questions
 
 The analysis examines:
 
-- How is listing price distributed?
-- Which room types and boroughs dominate the dataset?
-- How does price differ by borough and room type?
-- How is availability distributed?
-- How do reviews and ratings relate?
-- Does review activity differ by room type?
-- Which neighborhoods have higher median prices or stronger rating signals?
-- How do single-listing and multi-property hosts differ?
-- What geographic patterns appear across listings?
-- How has listing activity changed over time?
-- Which listings have never received reviews?
+- price distribution and outliers
+- room-type and borough mix
+- price differences by borough and room type
+- availability patterns
+- relationships between reviews and ratings
+- review activity by room type
+- neighborhood pricing and rating signals
+- single-listing vs multi-property hosts
+- geographic patterns
+- listing activity over time
+- never-reviewed listings
 
-## Dataset
+## Dataset Note
 
-**Provenance note:** The repository includes the Airbnb listings CSV used for this analysis. The original public source and licence are not documented in the current repository, so the README avoids attributing the dataset to a specific publisher without evidence.
-
-
-Key original fields include:
-
-| Area | Variables |
-|---|---|
-| Listing | `listing_id`, `name`, `listing_added` |
-| Host | `host_id`, `host_name` |
-| Location | `neighbourhood_full`, `coordinates` |
-| Accommodation | `room_type` |
-| Pricing | `price` |
-| Reviews | `number_of_reviews`, `last_review`, `reviews_per_month`, `rating`, `5_stars` |
-| Availability | `availability_365` |
-| Stay activity | `number_of_stays` |
-
-## Tech Stack
-
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- Jupyter Notebook
-- Git / GitHub
+The repository includes the CSV used for the analysis. The original public source and licence are not documented in the repository, so the project does not infer a publisher without evidence.
 
 ## Repository Structure
 
 ```text
 Airbnb-data-analytics/
+├── README.md
+├── requirements.txt
 ├── airbnb_data_analysis.ipynb
-├── airbnb (1).csv
-└── README.md
+└── airbnb (1).csv
 ```
+
+## How to Review
+
+**Recruiter:** read this README and the notebook markdown/outputs.  
+**Technical reviewer:** inspect the cleaning, validation, and feature-engineering sections before the EDA.  
+**Run locally:** install packages from `requirements.txt`, open the notebook, and run it with the dataset in its current path.
 
 ## What This Project Demonstrates
 
-This project is primarily evidence of **data cleaning discipline, feature-engineering judgment, exploratory analysis, and careful interpretation of proxy variables** rather than just chart generation.
+**Data cleaning discipline + feature-engineering judgment + exploratory analysis + careful interpretation of proxy variables.**
